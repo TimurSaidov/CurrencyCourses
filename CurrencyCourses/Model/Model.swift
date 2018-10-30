@@ -33,14 +33,20 @@ class Currency {
     var valueDouble: Double?
 }
 
+protocol Alert {
+    func apperearanceAlert()
+}
+
 class Model: NSObject, XMLParserDelegate {
     static let shared = Model() // Синглтон класса Model. Вызвав св-во класса, в него запишется ссылка на экземпляр класса. И при каждом вызове Model.shared будет вызываться уже созданный, конкретный экземпляр Model(), на который лежит ссылка в константе shared.
+    
+    var delegate: Alert?
     
     var currencies: [Currency] = []
     var currentDate: String = ""
     
     var pathForXML: String {
-        let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/data.xml"// Нулевой элемент - директория Library
+        let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/data.xml" // Нулевой элемент - директория Library
         
         print(path)
         
@@ -73,16 +79,28 @@ class Model: NSObject, XMLParserDelegate {
                 
                 do {
                     try data?.write(to: urlForSave)
+                    
                     print("Файл загружен")
                     print("Data: \(data!)")
-                    self.parseXML()
+                    if let xmlDataString = String(data: data!, encoding: String.Encoding.iso2022JP) {
+                        print("Data, конвертируемые из типа Data в тип String - \(xmlDataString)")
+                    }
+                    
+                    self.parseXML() // Парсятся обновленные в файле xml-данные.
                 } catch {
                     print("Error when save data: \(error.localizedDescription)")
                 }
             } else {
+                self.parseXML() // Если интернета нет, то парсятся xml-данные, которые были в файле на тот момент.
+                
+                self.delegate?.apperearanceAlert()
+                
                 print("Error in \(#function): \(error!.localizedDescription)")
             }
         }
+        
+        NotificationCenter.default.post(name: NSNotification.Name("startLoadingXML"), object: self) // Отправка уведомления по всему приложению с названием startLoadingXML о том, что начинается загрузка данных data типа Data, содержащих xml-объект, и запись этих данных в файл.
+        
         task.resume()
     }
     
@@ -95,9 +113,9 @@ class Model: NSObject, XMLParserDelegate {
         parser?.delegate = self
         parser?.parse()
         
-        print("Данные обновлены")
+        print("Данные отображены")
         
-        NotificationCenter.default.post(name: NSNotification.Name("dataRefreshed"), object: self) // Отправка уведомления по всему приложению с назаванием dataRefreshed.
+        NotificationCenter.default.post(name: NSNotification.Name("dataRefreshed"), object: self) // Отправка уведомления по всему приложению с названием dataRefreshed о том, что данные распарсены и массив currencies заполнен.
     }
     
     var currentCurrency: Currency?

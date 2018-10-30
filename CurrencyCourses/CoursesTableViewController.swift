@@ -9,21 +9,46 @@
 import UIKit
 
 class CoursesTableViewController: UITableViewController {
-
+    
+    @IBAction func unwindSegue(segue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func pushRefreshAction(_ sender: UIBarButtonItem) {
+        Model.shared.loadXMLFile(desiredDate: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Model.shared.delegate = self
+        Model.shared.loadXMLFile(desiredDate: nil)
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("startLoadingXML"), object: nil, queue: nil) { (notification) in
+            print("Уведомление startLoadingXML поймано")
+            
+            DispatchQueue.main.async {
+                let activityIndicator = UIActivityIndicatorView(style: .gray)
+                activityIndicator.startAnimating()
+                self.navigationItem.leftBarButtonItem?.customView = activityIndicator
+                self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0, green: 0.5628422499, blue: 0.3188166618, alpha: 1)
+            }
+        }
 
         NotificationCenter.default.addObserver(forName: NSNotification.Name("dataRefreshed"), object: nil, queue: nil) { (notification) in
-            print("Уведомление поймано")
+            print("Уведомление dataRefreshed поймано")
             
-            self.tableView.reloadData()
-            self.navigationItem.title = Model.shared.currentDate
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.navigationItem.title = Model.shared.currentDate
+                
+                let barButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(self.pushRefreshAction(_:)))
+                self.navigationItem.leftBarButtonItem = barButtonItem
+                self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0, green: 0.5628422499, blue: 0.3188166618, alpha: 1)
+            }
         }
         
         navigationItem.title = Model.shared.currentDate
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -50,41 +75,6 @@ class CoursesTableViewController: UITableViewController {
     }
 
     /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -93,5 +83,18 @@ class CoursesTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+extension CoursesTableViewController: Alert {
+    func apperearanceAlert() {
+        let alertController = UIAlertController(title: "The Internet connection appears to be offline", message: "Try to connect to the Internet", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Connect again", style: .default) { (action) in
+            Model.shared.loadXMLFile(desiredDate: nil)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(action)
+        alertController.addAction(cancel)
+        
+        present(alertController, animated: true, completion: nil)
+    }
 }

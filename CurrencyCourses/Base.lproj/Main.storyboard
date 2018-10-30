@@ -65,7 +65,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="7tv-j0-hHt">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="aD9-uI-1kG">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="vdj-h8-btQ">
+                            <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="pushRefreshAction:" destination="WqT-AF-ap7" id="hDB-mg-JWo"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="setting" id="aD9-uI-1kG">
+                            <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="REV-Uu-8sL" kind="presentation" id="DnE-1O-QyK"/>
                             </connections>
@@ -76,16 +83,16 @@
             </objects>
             <point key="canvasLocation" x="1268" y="-422.33883058470769"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Settings Table View Controller-->
         <scene sceneID="tfP-MQ-PjO">
             <objects>
-                <tableViewController id="c9L-Kn-Ehx" sceneMemberID="viewController">
+                <tableViewController id="c9L-Kn-Ehx" customClass="SettingsTableViewController" customModule="CurrencyCourses" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="9su-hz-Gnf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Date" id="KPv-hE-AGh">
+                            <tableViewSection headerTitle="Date Picker" id="KPv-hE-AGh">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingCell" textLabel="rFb-49-Arc" detailTextLabel="d3e-k9-fDc" style="IBUITableViewCellStyleValue1" id="lgr-kY-BBa">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
@@ -94,14 +101,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rFb-49-Arc">
-                                                    <rect key="frame" x="16" y="12" width="33.5" height="20.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rFb-49-Arc">
+                                                    <rect key="frame" x="16" y="12" width="36" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d3e-k9-fDc">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d3e-k9-fDc">
                                                     <rect key="frame" x="315" y="12" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -123,6 +130,9 @@
                                                     <date key="date" timeIntervalSinceReferenceDate="562608466.59090996">
                                                         <!--2018-10-30 16:07:46 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="valueChanged:" destination="c9L-Kn-Ehx" eventType="valueChanged" id="U8A-HY-lWS"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -142,11 +152,27 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="z2o-tx-O2Y">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="euG-Wb-Ubx"/>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="gVx-5M-Sr4"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="euG-Wb-Ubx">
+                            <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="4Qt-H5-NNq" kind="unwind" unwindAction="unwindSegueWithSegue:" id="pwW-VF-NZb"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="gVx-5M-Sr4">
+                            <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="c9L-Kn-Ehx" id="VZN-tu-c8t"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="dateLabel" destination="d3e-k9-fDc" id="9o0-aa-5Nc"/>
+                        <outlet property="datePicker" destination="E3l-16-dIP" id="9hR-Rx-Kmp"/>
+                        <outlet property="doneButton" destination="gVx-5M-Sr4" id="2ie-kQ-fhn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pCS-lN-fZh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="4Qt-H5-NNq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3132" y="-422"/>
         </scene>
@@ -158,6 +184,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="jpG-rz-w9w" kind="relationship" relationship="viewControllers" id="3Fn-sa-2bY"/>
@@ -172,7 +199,7 @@
         <scene sceneID="iGG-Q9-Qnm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="92N-WY-rN8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Converter" id="eTW-Fb-PQg"/>
+                    <tabBarItem key="tabBarItem" title="Converter" image="converter" id="eTW-Fb-PQg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yF0-8r-HEa">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -191,11 +218,14 @@
         <scene sceneID="Dnr-Cq-OCs">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jpG-rz-w9w" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Courses" id="CcI-JE-MdE"/>
+                    <tabBarItem key="tabBarItem" title="Courses" image="courses" id="CcI-JE-MdE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C1m-b3-31f">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -225,4 +255,9 @@
             <point key="canvasLocation" x="2194" y="-422"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="converter" width="30" height="30"/>
+        <image name="courses" width="25" height="25"/>
+        <image name="setting" width="30" height="30"/>
+    </resources>
 </document>
