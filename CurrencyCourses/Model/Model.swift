@@ -32,9 +32,9 @@ class Currency {
 }
 
 class Model: NSObject, XMLParserDelegate {
-    static let shared = Model() // Синглтон. Вызвав св-во класса(let), в него запишется ссылка на экземпляр класса.
+    static let shared = Model() // Синглтон. Вызвав св-во класса, в него запишется ссылка на экземпляр класса.     И при каждом вызове Model.shared будет вызываться уже созданный, конкретный экземпляр Model(), на который лежит ссылка в константе shared.
     
-    var currecies: [Currency] = []
+    var currencies: [Currency] = []
     
     var pathForXML: String {
         let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/data.xml"// Нулевой элемент - директория Library
@@ -58,13 +58,16 @@ class Model: NSObject, XMLParserDelegate {
         
     }
     
-    // Парсинг данных. А также уведомление приложения о том, что данные обновились.
+    // Парсинг данных. В файле data.xml по пути pathForXML лежит xml-объект типа xml (в формате xml). Создавая парсер parser, вызываются 3 его метода, благодаря которым xml-объект парсится в массив currencies. А также уведомление приложения о том, что данные обновились.
+    // xml-объект типа (формата) xml -> из которого создается экземпляр класса Currency и добавляется в массив.
     func parseXML() {
+        currencies.removeAll() // Чтобы при каждом новом парсинге валюты не дублировались.
+        
         let parser = XMLParser(contentsOf: urlForXML)
         parser?.delegate = self
         parser?.parse()
         
-        print(currecies)
+        print(currencies)
     }
     
     var currentCurrency: Currency?
@@ -112,7 +115,7 @@ class Model: NSObject, XMLParserDelegate {
             currentCurrency?.valueDouble = Double(currentCharacters.replacingOccurrences(of: ",", with: "."))
         }
         if elementName == "Valute" {
-            currecies.append(currentCurrency!)
+            currencies.append(currentCurrency!)
         }
         
         

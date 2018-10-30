@@ -8,24 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		39913E6121889006003CEA6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39913E6021889006003CEA6C /* AppDelegate.swift */; };
-		39913E6321889006003CEA6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39913E6221889006003CEA6C /* ViewController.swift */; };
 		39913E6621889006003CEA6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39913E6421889006003CEA6C /* Main.storyboard */; };
 		39913E6821889008003CEA6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39913E6721889008003CEA6C /* Assets.xcassets */; };
 		39913E6B21889008003CEA6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39913E6921889008003CEA6C /* LaunchScreen.storyboard */; };
 		39913E732188905E003CEA6C /* data.xml in Resources */ = {isa = PBXBuildFile; fileRef = 39913E722188905E003CEA6C /* data.xml */; };
 		39913E752188909A003CEA6C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39913E742188909A003CEA6C /* Model.swift */; };
+		39913E772188A697003CEA6C /* CoursesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39913E762188A697003CEA6C /* CoursesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		39913E5D21889006003CEA6C /* CurrencyCourses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyCourses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39913E6021889006003CEA6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		39913E6221889006003CEA6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		39913E6521889006003CEA6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		39913E6721889008003CEA6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39913E6A21889008003CEA6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39913E6C21889008003CEA6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39913E722188905E003CEA6C /* data.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = data.xml; sourceTree = "<group>"; };
 		39913E742188909A003CEA6C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		39913E762188A697003CEA6C /* CoursesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,15 +59,23 @@
 			isa = PBXGroup;
 			children = (
 				39913E6021889006003CEA6C /* AppDelegate.swift */,
-				39913E6221889006003CEA6C /* ViewController.swift */,
+				39913E762188A697003CEA6C /* CoursesTableViewController.swift */,
+				39913E782188A6FE003CEA6C /* Model */,
 				39913E6421889006003CEA6C /* Main.storyboard */,
-				39913E742188909A003CEA6C /* Model.swift */,
 				39913E6721889008003CEA6C /* Assets.xcassets */,
 				39913E6921889008003CEA6C /* LaunchScreen.storyboard */,
 				39913E6C21889008003CEA6C /* Info.plist */,
 				39913E722188905E003CEA6C /* data.xml */,
 			);
 			path = CurrencyCourses;
+			sourceTree = "<group>";
+		};
+		39913E782188A6FE003CEA6C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				39913E742188909A003CEA6C /* Model.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39913E752188909A003CEA6C /* Model.swift in Sources */,
-				39913E6321889006003CEA6C /* ViewController.swift in Sources */,
+				39913E772188A697003CEA6C /* CoursesTableViewController.swift in Sources */,
 				39913E6121889006003CEA6C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
