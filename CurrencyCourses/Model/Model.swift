@@ -32,7 +32,15 @@ class Currency {
 }
 
 class Model: NSObject, XMLParserDelegate {
-    static let shared = Model() // Синглтон. Вызвав св-во класса, в него запишется ссылка на экземпляр класса.     И при каждом вызове Model.shared будет вызываться уже созданный, конкретный экземпляр Model(), на который лежит ссылка в константе shared.
+    static let shared = Model() // Синглтон класса Model. Вызвав св-во класса, в него запишется ссылка на экземпляр класса. И при каждом вызове Model.shared будет вызываться уже созданный, конкретный экземпляр Model(), на который лежит ссылка в константе shared.
+    
+    static let dateFormatter: DateFormatter = { // Cинглтон класса DateFormatter.
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        
+        return dateFormatter
+    }()
     
     var currencies: [Currency] = []
     
@@ -53,9 +61,32 @@ class Model: NSObject, XMLParserDelegate {
         return URL(fileURLWithPath: pathForXML)
     }
     
-    // Загрузка XML-данных (XML-объектов) с cbr.ru и их сохранение в каталоге приложения.
-    func loadXMLFile(data: Data) {
+    // Загрузка XML-данных (XML-объекта) с cbr.ru и их сохранение в каталоге приложения.
+    // http://www.cbr.ru/scripts/XML_daily.asp?date_req=02/03/2002
+    func loadXMLFile(desiredDate: Date?) {
+        var strUrl = "http://www.cbr.ru/scripts/XML_daily.asp?date_req="
         
+        if let date = desiredDate {
+            strUrl = strUrl + Model.dateFormatter.string(from: date)
+        }
+        let url = URL(string: strUrl)
+
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if error == nil {
+                let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/data.xml"
+                let urlForSave = URL(fileURLWithPath: path)
+                
+                do {
+                    try data?.write(to: urlForSave)
+                    print("Data: \(data!)")
+                } catch {
+                    print("Error when save data: \(error.localizedDescription)")
+                }
+            } else {
+                print("Error in \(#function): \(error!.localizedDescription)")
+            }
+        }
+        task.resume()
     }
     
     // Парсинг данных. В файле data.xml по пути pathForXML лежит xml-объект типа xml (в формате xml). Создавая парсер parser, вызываются 3 его метода, благодаря которым xml-объект парсится в массив currencies. А также уведомление приложения о том, что данные обновились.
