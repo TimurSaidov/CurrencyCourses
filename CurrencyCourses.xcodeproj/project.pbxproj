@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		396F391D2188C5AA00470988 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396F391C2188C5AA00470988 /* SettingsTableViewController.swift */; };
+		396F391F2188F80200470988 /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396F391E2188F80200470988 /* ConverterViewController.swift */; };
 		39913E6121889006003CEA6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39913E6021889006003CEA6C /* AppDelegate.swift */; };
 		39913E6621889006003CEA6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39913E6421889006003CEA6C /* Main.storyboard */; };
 		39913E6821889008003CEA6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39913E6721889008003CEA6C /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		396F391C2188C5AA00470988 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		396F391E2188F80200470988 /* ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
 		39913E5D21889006003CEA6C /* CurrencyCourses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyCourses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39913E6021889006003CEA6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39913E6521889006003CEA6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				39913E6021889006003CEA6C /* AppDelegate.swift */,
 				39913E762188A697003CEA6C /* CoursesTableViewController.swift */,
 				396F391C2188C5AA00470988 /* SettingsTableViewController.swift */,
+				396F391E2188F80200470988 /* ConverterViewController.swift */,
 				39913E782188A6FE003CEA6C /* Model */,
 				39913E6421889006003CEA6C /* Main.storyboard */,
 				39913E6721889008003CEA6C /* Assets.xcassets */,
@@ -153,6 +156,7 @@
 				39913E752188909A003CEA6C /* Model.swift in Sources */,
 				39913E772188A697003CEA6C /* CoursesTableViewController.swift in Sources */,
 				39913E6121889006003CEA6C /* AppDelegate.swift in Sources */,
+				396F391F2188F80200470988 /* ConverterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

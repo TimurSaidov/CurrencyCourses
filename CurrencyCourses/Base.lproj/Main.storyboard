@@ -12,14 +12,119 @@
         <!--Converter-->
         <scene sceneID="bhv-Ad-8Tw">
             <objects>
-                <viewController id="VOV-Q3-Igg" sceneMemberID="viewController">
+                <viewController id="VOV-Q3-Igg" customClass="ConverterViewController" customModule="CurrencyCourses" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0PX-r6-teu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HTz-1s-xat">
+                                <rect key="frame" x="319" y="126" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="JOo-ik-mFV"/>
+                                    <constraint firstAttribute="height" constant="40" id="tId-EH-OFg"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYd-f3-AXZ">
+                                <rect key="frame" x="251" y="126" width="60" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="GR7-Gw-Y00"/>
+                                    <constraint firstAttribute="height" constant="40" id="a2a-c3-wAT"/>
+                                </constraints>
+                                <state key="normal" title="RUB"/>
+                                <connections>
+                                    <action selector="pushFromAction:" destination="VOV-Q3-Igg" eventType="touchUpInside" id="Dhp-bW-Q0b"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m6N-2G-b3Z">
+                                <rect key="frame" x="319" y="246" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="nmu-lL-ACv"/>
+                                    <constraint firstAttribute="width" constant="40" id="yJN-uw-gBV"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ef4-yX-9KH">
+                                <rect key="frame" x="251" y="246" width="60" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="4Ao-y8-Pm5"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="dwr-NT-y0y"/>
+                                </constraints>
+                                <state key="normal" title="RUB"/>
+                                <connections>
+                                    <action selector="pushToAction:" destination="VOV-Q3-Igg" eventType="touchUpInside" id="Mlr-5t-KUo"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course for the date:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDI-9R-pQX">
+                                <rect key="frame" x="16" y="80" width="343" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="R0y-r8-TlT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VdH-cV-qJT">
+                                <rect key="frame" x="16" y="131" width="241" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="241" id="pun-yM-tJL"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFromEditingChanged:" destination="VOV-Q3-Igg" eventType="editingChanged" id="ern-dA-gv6"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bQf-K4-iTP">
+                                <rect key="frame" x="16" y="251" width="241" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="241" id="AcY-Ka-1ob"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="switch" translatesAutoresizingMaskIntoConstraints="NO" id="ESC-Fk-qgm">
+                                <rect key="frame" x="167.5" y="186" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Lj1-xV-els"/>
+                                    <constraint firstAttribute="width" constant="40" id="kxU-d6-QDt"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ef4-yX-9KH" firstAttribute="leading" secondItem="bQf-K4-iTP" secondAttribute="trailing" constant="-6" id="4q0-QW-U4C"/>
+                            <constraint firstItem="HTz-1s-xat" firstAttribute="leading" secondItem="GYd-f3-AXZ" secondAttribute="trailing" constant="8" id="6i9-YN-BHr"/>
+                            <constraint firstItem="GYd-f3-AXZ" firstAttribute="top" secondItem="U35-Q1-S9W" secondAttribute="top" constant="62" id="7TY-Y6-akE"/>
+                            <constraint firstItem="eDI-9R-pQX" firstAttribute="leading" secondItem="U35-Q1-S9W" secondAttribute="leading" constant="16" id="CEv-fS-tRB"/>
+                            <constraint firstItem="eDI-9R-pQX" firstAttribute="top" secondItem="U35-Q1-S9W" secondAttribute="top" constant="16" id="DHx-l5-xE3"/>
+                            <constraint firstItem="HTz-1s-xat" firstAttribute="top" secondItem="U35-Q1-S9W" secondAttribute="top" constant="62" id="DcN-zH-OAD"/>
+                            <constraint firstItem="U35-Q1-S9W" firstAttribute="trailing" secondItem="eDI-9R-pQX" secondAttribute="trailing" constant="16" id="Gqz-lN-egm"/>
+                            <constraint firstItem="U35-Q1-S9W" firstAttribute="trailing" secondItem="m6N-2G-b3Z" secondAttribute="trailing" constant="16" id="GwW-B8-y4Y"/>
+                            <constraint firstItem="bQf-K4-iTP" firstAttribute="leading" secondItem="U35-Q1-S9W" secondAttribute="leading" constant="16" id="L2S-F1-4bi"/>
+                            <constraint firstItem="m6N-2G-b3Z" firstAttribute="top" secondItem="HTz-1s-xat" secondAttribute="bottom" constant="80" id="Vc0-XR-F9X"/>
+                            <constraint firstItem="GYd-f3-AXZ" firstAttribute="leading" secondItem="VdH-cV-qJT" secondAttribute="trailing" constant="-6" id="YR2-b5-mxv"/>
+                            <constraint firstItem="VdH-cV-qJT" firstAttribute="leading" secondItem="U35-Q1-S9W" secondAttribute="leading" constant="16" id="bDV-o3-c2f"/>
+                            <constraint firstItem="ESC-Fk-qgm" firstAttribute="centerX" secondItem="U35-Q1-S9W" secondAttribute="centerX" id="eID-9h-kO1"/>
+                            <constraint firstItem="VdH-cV-qJT" firstAttribute="top" secondItem="eDI-9R-pQX" secondAttribute="bottom" constant="30" id="eMn-ie-NOj"/>
+                            <constraint firstItem="Ef4-yX-9KH" firstAttribute="top" secondItem="GYd-f3-AXZ" secondAttribute="bottom" constant="80" id="fLM-PN-Fai"/>
+                            <constraint firstItem="U35-Q1-S9W" firstAttribute="trailing" secondItem="HTz-1s-xat" secondAttribute="trailing" constant="16" id="hPf-xC-yz8"/>
+                            <constraint firstItem="m6N-2G-b3Z" firstAttribute="leading" secondItem="Ef4-yX-9KH" secondAttribute="trailing" constant="8" id="hcL-kN-YeH"/>
+                            <constraint firstItem="bQf-K4-iTP" firstAttribute="top" secondItem="ESC-Fk-qgm" secondAttribute="bottom" constant="25" id="qul-AL-zRk"/>
+                            <constraint firstItem="ESC-Fk-qgm" firstAttribute="top" secondItem="VdH-cV-qJT" secondAttribute="bottom" constant="25" id="zHW-9i-hc8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="U35-Q1-S9W"/>
                     </view>
                     <navigationItem key="navigationItem" title="Converter" id="NM0-vk-xeu"/>
+                    <connections>
+                        <outlet property="buttonFrom" destination="GYd-f3-AXZ" id="1si-t9-9cQ"/>
+                        <outlet property="buttonTo" destination="Ef4-yX-9KH" id="hF2-Im-q4S"/>
+                        <outlet property="dateLabel" destination="eDI-9R-pQX" id="QZl-lL-ejG"/>
+                        <outlet property="imageFrom" destination="HTz-1s-xat" id="Xfb-T6-g5Z"/>
+                        <outlet property="imageTo" destination="m6N-2G-b3Z" id="1IM-vR-J8D"/>
+                        <outlet property="textFieldFrom" destination="VdH-cV-qJT" id="Yei-LV-p6X"/>
+                        <outlet property="textFieldTo" destination="bQf-K4-iTP" id="cLc-MM-xy1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VC6-TA-khX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -259,5 +364,6 @@
         <image name="converter" width="30" height="30"/>
         <image name="courses" width="25" height="25"/>
         <image name="setting" width="30" height="30"/>
+        <image name="switch" width="60" height="60"/>
     </resources>
 </document>
