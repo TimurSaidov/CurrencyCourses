@@ -37,7 +37,7 @@ class Model: NSObject, XMLParserDelegate {
     static let shared = Model() // Синглтон класса Model. Вызвав св-во класса, в него запишется ссылка на экземпляр класса. И при каждом вызове Model.shared будет вызываться уже созданный, конкретный экземпляр Model(), на который лежит ссылка в константе shared.
     
     var currencies: [Currency] = []
-    var currentDate: Date = Date()
+    var currentDate: String = ""
     
     var pathForXML: String {
         let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/data.xml"// Нулевой элемент - директория Library
@@ -73,7 +73,9 @@ class Model: NSObject, XMLParserDelegate {
                 
                 do {
                     try data?.write(to: urlForSave)
+                    print("Файл загружен")
                     print("Data: \(data!)")
+                    self.parseXML()
                 } catch {
                     print("Error when save data: \(error.localizedDescription)")
                 }
@@ -93,7 +95,9 @@ class Model: NSObject, XMLParserDelegate {
         parser?.delegate = self
         parser?.parse()
         
-        print(currencies)
+        print("Данные обновлены")
+        
+        NotificationCenter.default.post(name: NSNotification.Name("dataRefreshed"), object: self) // Отправка уведомления по всему приложению с назаванием dataRefreshed.
     }
     
     var currentCurrency: Currency?
@@ -102,7 +106,7 @@ class Model: NSObject, XMLParserDelegate {
         
         if elementName == "ValCurs" {
             if let currentDateString = attributeDict["Date"] {
-                currentDate = CourseDateFormatter.dateFormatter.date(from: currentDateString)!
+                currentDate = currentDateString
             }
         }
         

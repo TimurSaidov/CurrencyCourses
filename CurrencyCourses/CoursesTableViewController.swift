@@ -13,7 +13,14 @@ class CoursesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = CourseDateFormatter.dateFormatter.string(from: Model.shared.currentDate)
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("dataRefreshed"), object: nil, queue: nil) { (notification) in
+            print("Уведомление поймано")
+            
+            self.tableView.reloadData()
+            self.navigationItem.title = Model.shared.currentDate
+        }
+        
+        navigationItem.title = Model.shared.currentDate
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
