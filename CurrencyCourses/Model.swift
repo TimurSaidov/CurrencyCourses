@@ -35,7 +35,16 @@ class Model: NSObject {
     var currecies: [Currency] = []
     
     var pathForXML: String {
-        return ""
+        let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/data.xml"// Нулевой элемент - директория Library
+        
+        print(path)
+        
+        // Проверка, есть ли файл по указанному пути path. Если нет нет, то обращаться к файлу data.xml внаутри приложения.
+        if FileManager.default.fileExists(atPath: path) {
+            return path
+        }
+        
+        return Bundle.main.path(forResource: "data", ofType: "xml")! // Обращение к приложению.
     }
     
     var urlFoXML: URL? {
