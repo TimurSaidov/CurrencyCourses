@@ -31,9 +31,23 @@ class Currency {
     
     var Value: String?
     var valueDouble: Double?
+    
+    class func rouble() -> Currency {
+        let rub = Currency()
+        
+        rub.CharCode = "RUB"
+        rub.Nominal = "1"
+        rub.nominalDouble = 1
+        rub.Name = "Российский рубль"
+        rub.Value = "1"
+        rub.valueDouble = 1
+        
+        return rub
+    }
 }
 
 protocol Alert {
+    func alertInvalidData()
     func apperearanceAlert()
 }
 
@@ -44,6 +58,19 @@ class Model: NSObject, XMLParserDelegate {
     
     var currencies: [Currency] = []
     var currentDate: String = ""
+    
+    // Переменные для конвертации.
+    var fromCurrency: Currency = Currency.rouble()
+    var toCurrency: Currency = Currency.rouble()
+    
+    // Функция конвертации.
+    func conver(amount: Double?) -> String {
+        guard let amount = amount else { return "" }
+        
+        let money = ((fromCurrency.nominalDouble! * fromCurrency.valueDouble!) / (toCurrency.nominalDouble! * toCurrency.valueDouble!)) * amount
+        
+        return String(money)
+    }
     
     var pathForXML: String? {
         let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/data.xml" // Нулевой элемент - директория Library
@@ -76,6 +103,8 @@ class Model: NSObject, XMLParserDelegate {
         let url = URL(string: strUrl)
 
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+//            var errorWhenLoad: String?
+            
             if error == nil {
                 let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/data.xml"
                 let urlForSave = URL(fileURLWithPath: path)
@@ -91,15 +120,26 @@ class Model: NSObject, XMLParserDelegate {
                     
                     self.parseXML() // Парсятся обновленные в файле xml-данные.
                 } catch {
+                    self.parseXML() // Если пришли неправильные данные, то парсятся xml-данные, которые были в файле на тот момент и вызывается alert controller.
+                    
+                    self.delegate?.alertInvalidData() // Вместо делегата можно использовать NotificationCenter.
+//                    errorWhenLoad = error.localizedDescription
+                    
                     print("Error when save data: \(error.localizedDescription)")
                 }
             } else {
-                self.parseXML() // Если интернета нет, то парсятся xml-данные, которые были в файле на тот момент.
+                self.parseXML() // Если интернета нет, то парсятся xml-данные, которые были в файле на тот момент  и вызывается alert controller.
                 
-                self.delegate?.apperearanceAlert()
+                self.delegate?.apperearanceAlert() // Вместо делегата можно использовать NotificationCenter.
+//                errorWhenLoad = error?.localizedDescription
                 
                 print("Error in \(#function): \(error!.localizedDescription)")
             }
+            
+//            if let error = errorWhenLoad {
+//                NotificationCenter.default.post(name: NSNotification.Name("ErrorWhenLoading"), object: self, userInfo: ["ErrorName": error])
+//
+//            }
         }
         
         NotificationCenter.default.post(name: NSNotification.Name("startLoadingXML"), object: self) // Отправка уведомления по всему приложению с названием startLoadingXML о том, что начинается загрузка данных data типа Data, содержащих xml-объект, и запись этих данных в файл.
@@ -110,7 +150,7 @@ class Model: NSObject, XMLParserDelegate {
     // Парсинг данных. В файле data.xml по пути pathForXML лежит xml-объект типа xml (в формате xml). Создавая парсер parser, вызываются 3 его метода, благодаря которым xml-объект парсится в массив currencies. А также уведомление приложения о том, что данные обновились.
     // xml-объект типа (формата) xml -> из которого создается экземпляр класса Currency и добавляется в массив.
     func parseXML() {
-        currencies.removeAll() // Чтобы при каждом новом парсинге валюты не дублировались.
+        currencies = [Currency.rouble()] // Чтобы при каждом новом парсинге валюты не дублировались, переопределяем массив, первым элементом которого становится рубль.
         
         if let urlForXMLParse = urlForXML {
             let parser = XMLParser(contentsOf: urlForXMLParse)

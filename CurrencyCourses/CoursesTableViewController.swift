@@ -29,9 +29,9 @@ class CoursesTableViewController: UITableViewController {
             
             DispatchQueue.main.async {
                 let activityIndicator = UIActivityIndicatorView(style: .gray)
+                activityIndicator.color = #colorLiteral(red: 0, green: 0.5628422499, blue: 0.3188166618, alpha: 1)
                 activityIndicator.startAnimating()
                 self.navigationItem.leftBarButtonItem?.customView = activityIndicator
-                self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0, green: 0.5628422499, blue: 0.3188166618, alpha: 1)
             }
         }
 
@@ -47,6 +47,23 @@ class CoursesTableViewController: UITableViewController {
                 self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0, green: 0.5628422499, blue: 0.3188166618, alpha: 1)
             }
         }
+        
+//        NotificationCenter.default.addObserver(forName: NSNotification.Name("ErrorWhenLoading"), object: nil, queue: nil) { (notification) in
+//            print("Уведомление ErrorWhenLoading поймано")
+//            
+//            DispatchQueue.main.async {
+//                let alertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
+//                let action = UIAlertAction(title: "", style: .default, handler: { (action) in
+//                    
+//                })
+//                alertController.addAction(action)
+//                self.present(alertController, animated: true, completion: nil)
+//                
+//                let barButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(self.pushRefreshAction(_:)))
+//                self.navigationItem.leftBarButtonItem = barButtonItem
+//                self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0, green: 0.5628422499, blue: 0.3188166618, alpha: 1)
+//            }
+//        }
         
         navigationItem.title = Model.shared.currentDate
     }
@@ -94,6 +111,16 @@ extension CoursesTableViewController: Alert {
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(action)
         alertController.addAction(cancel)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func alertInvalidData() {
+        let alertController = UIAlertController(title: "Invalid data XML", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Connect again", style: .default) { (action) in
+            Model.shared.loadXMLFile(desiredDate: nil)
+        }
+        alertController.addAction(action)
         
         present(alertController, animated: true, completion: nil)
     }
