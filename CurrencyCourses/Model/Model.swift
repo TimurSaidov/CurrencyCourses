@@ -45,21 +45,24 @@ class Model: NSObject, XMLParserDelegate {
     var currencies: [Currency] = []
     var currentDate: String = ""
     
-    var pathForXML: String {
+    var pathForXML: String? {
         let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/data.xml" // Нулевой элемент - директория Library
         
         print(path)
         
-        // Проверка, есть ли файл по указанному пути path. Если нет нет, то обращаться к файлу data.xml внаутри приложения.
+        // Проверка, есть ли файл по указанному пути path. Если нет, то вызывается alert.
         if FileManager.default.fileExists(atPath: path) {
             return path
         }
         
-        return Bundle.main.path(forResource: "data", ofType: "xml")! // Обращение к приложению.
+        return nil
     }
     
-    var urlForXML: URL {
-        return URL(fileURLWithPath: pathForXML)
+    var urlForXML: URL? {
+        if let urlPath = pathForXML {
+            return URL(fileURLWithPath: urlPath)
+        }
+        return nil
     }
     
     // Загрузка XML-данных (XML-объекта) с cbr.ru и их сохранение в каталоге приложения.
@@ -109,13 +112,15 @@ class Model: NSObject, XMLParserDelegate {
     func parseXML() {
         currencies.removeAll() // Чтобы при каждом новом парсинге валюты не дублировались.
         
-        let parser = XMLParser(contentsOf: urlForXML)
-        parser?.delegate = self
-        parser?.parse()
+        if let urlForXMLParse = urlForXML {
+            let parser = XMLParser(contentsOf: urlForXMLParse)
+            parser?.delegate = self
+            parser?.parse()
+        }
         
         print("Данные отображены")
         
-        NotificationCenter.default.post(name: NSNotification.Name("dataRefreshed"), object: self) // Отправка уведомления по всему приложению с названием dataRefreshed о том, что данные распарсены и массив currencies заполнен.
+        NotificationCenter.default.post(name: NSNotification.Name("dataRefreshed"), object: self) // Отправка уведомления по всему приложению с названием dataRefreshed о том, что данные распарсены и массив currencies заполнен, или, если файла data.xml нет, то просто отображение пустой таблицы.
     }
     
     var currentCurrency: Currency?
