@@ -9,11 +9,13 @@
 import Foundation
 
 /*
-<NumCode>036</NumCode>
+<Valute ID="R01010">
+    <NumCode>036</NumCode>
     <CharCode>AUD</CharCode>
     <Nominal>1</Nominal>
     <Name>...</Name>
     <Value>16,0102</Value>
+</Valute>
 */
 
 class Currency {
@@ -21,15 +23,15 @@ class Currency {
     var CharCode: String?
     
     var Nominal: String?
-    var nominalDouble: String?
+    var nominalDouble: Double?
     
     var Name: String?
     
     var Value: String?
-    var valueDouble: String?
+    var valueDouble: Double?
 }
 
-class Model: NSObject {
+class Model: NSObject, XMLParserDelegate {
     static let shared = Model() // Синглтон. Вызвав св-во класса(let), в него запишется ссылка на экземпляр класса.
     
     var currecies: [Currency] = []
@@ -47,8 +49,8 @@ class Model: NSObject {
         return Bundle.main.path(forResource: "data", ofType: "xml")! // Обращение к приложению.
     }
     
-    var urlFoXML: URL? {
-        return nil
+    var urlForXML: URL {
+        return URL(fileURLWithPath: pathForXML)
     }
     
     // Загрузка XML-данных (XML-объектов) с cbr.ru и их сохранение в каталоге приложения.
@@ -58,6 +60,61 @@ class Model: NSObject {
     
     // Парсинг данных. А также уведомление приложения о том, что данные обновились.
     func parseXML() {
+        let parser = XMLParser(contentsOf: urlForXML)
+        parser?.delegate = self
+        parser?.parse()
+        
+        print(currecies)
+    }
+    
+    var currentCurrency: Currency?
+    // Когда parser видит новый тег, вызывается метод didStartElement. То есть <ValCurs Date="02.03.2002" name="Foreign Currency Market"> - это начало тега ValCurs. Все, что внутри него, до >, записывается в словарь аттрибутов.
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        
+        if elementName == "Valute" {
+            currentCurrency = Currency()
+        }
+    }
+    
+    var currentCharacters: String = ""
+    // Когда parser видит то, что внутри открывающего и закрывающего тега, вызывается метод foundCharacters. То есть все то, что внутри <ValCurs Date="02.03.2002" name="Foreign Currency Market"> ... </ValCurs>. Или <NumCode>036</NumCode> - где foundCharacters - это 036.
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        currentCharacters = string
+    }
+    
+    // Когда parser видит закрытый тег, вызываетсяя метод didEndElement. То есть </ValCurs>.
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        /*
+        <Valute ID="R01010">
+            <NumCode>036</NumCode>
+            <CharCode>AUD</CharCode>
+            <Nominal>1</Nominal>
+            <Name>...</Name>
+            <Value>16,0102</Value>
+        </Valute>
+        */
+        
+        if elementName == "NumCode" {
+            currentCurrency?.NumCode = currentCharacters
+        }
+        if elementName == "CharCode" {
+            currentCurrency?.CharCode = currentCharacters
+        }
+        if elementName == "Nominal" {
+            currentCurrency?.Nominal = currentCharacters
+            currentCurrency?.nominalDouble = Double(currentCharacters.replacingOccurrences(of: ",", with: "."))
+        }
+        if elementName == "Name" {
+            currentCurrency?.Name = currentCharacters
+        }
+        if elementName == "Value" {
+            currentCurrency?.Value = currentCharacters
+            currentCurrency?.valueDouble = Double(currentCharacters.replacingOccurrences(of: ",", with: "."))
+        }
+        if elementName == "Valute" {
+            currecies.append(currentCurrency!)
+        }
+        
         
     }
 }
