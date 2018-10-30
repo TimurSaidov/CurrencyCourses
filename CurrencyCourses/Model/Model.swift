@@ -9,6 +9,7 @@
 import Foundation
 
 /*
+<ValCurs Date="02.03.2002" name="Foreign Currency Market">
 <Valute ID="R01010">
     <NumCode>036</NumCode>
     <CharCode>AUD</CharCode>
@@ -16,6 +17,7 @@ import Foundation
     <Name>...</Name>
     <Value>16,0102</Value>
 </Valute>
+</ValCurs>
 */
 
 class Currency {
@@ -34,15 +36,8 @@ class Currency {
 class Model: NSObject, XMLParserDelegate {
     static let shared = Model() // Синглтон класса Model. Вызвав св-во класса, в него запишется ссылка на экземпляр класса. И при каждом вызове Model.shared будет вызываться уже созданный, конкретный экземпляр Model(), на который лежит ссылка в константе shared.
     
-    static let dateFormatter: DateFormatter = { // Cинглтон класса DateFormatter.
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .short
-        
-        return dateFormatter
-    }()
-    
     var currencies: [Currency] = []
+    var currentDate: Date = Date()
     
     var pathForXML: String {
         let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/data.xml"// Нулевой элемент - директория Library
@@ -67,7 +62,7 @@ class Model: NSObject, XMLParserDelegate {
         var strUrl = "http://www.cbr.ru/scripts/XML_daily.asp?date_req="
         
         if let date = desiredDate {
-            strUrl = strUrl + Model.dateFormatter.string(from: date)
+            strUrl = strUrl + CourseDateFormatter.dateFormatter.string(from: date)
         }
         let url = URL(string: strUrl)
 
@@ -102,8 +97,14 @@ class Model: NSObject, XMLParserDelegate {
     }
     
     var currentCurrency: Currency?
-    // Когда parser видит новый тег, вызывается метод didStartElement. То есть <ValCurs Date="02.03.2002" name="Foreign Currency Market"> - это начало тега ValCurs. Все, что внутри него, до >, записывается в словарь аттрибутов.
+    // Когда parser видит новый тег, вызывается метод didStartElement. То есть <ValCurs Date="02.03.2002" name="Foreign Currency Market"> - это начало открыввающего тега ValCurs. Все, что внутри него, то есть    от < до >, записывается в словарь аттрибутов attributeDict.
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        
+        if elementName == "ValCurs" {
+            if let currentDateString = attributeDict["Date"] {
+                currentDate = CourseDateFormatter.dateFormatter.date(from: currentDateString)!
+            }
+        }
         
         if elementName == "Valute" {
             currentCurrency = Currency()
@@ -151,4 +152,13 @@ class Model: NSObject, XMLParserDelegate {
         
         
     }
+}
+
+class CourseDateFormatter {
+    static let dateFormatter: DateFormatter = { // Cинглтон класса DateFormatter.
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        
+        return dateFormatter
+    }()
 }
