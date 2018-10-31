@@ -104,7 +104,7 @@ class CoursesTableViewController: UITableViewController {
 
 extension CoursesTableViewController: Alert {
     func apperearanceAlert() {
-        let alertController = UIAlertController(title: "The Internet connection appears to be offline", message: "Try to connect to the Internet", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "The Internet connection appears to be offline", message: "Try to connect to the Internet. Last loaded data is now displayed", preferredStyle: .alert)
         let action = UIAlertAction(title: "Connect again", style: .default) { (action) in
             Model.shared.loadXMLFile(desiredDate: nil)
         }

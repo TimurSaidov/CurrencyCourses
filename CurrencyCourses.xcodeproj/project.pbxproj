@@ -15,6 +15,7 @@
 		39913E6B21889008003CEA6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39913E6921889008003CEA6C /* LaunchScreen.storyboard */; };
 		39913E752188909A003CEA6C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39913E742188909A003CEA6C /* Model.swift */; };
 		39913E772188A697003CEA6C /* CoursesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39913E762188A697003CEA6C /* CoursesTableViewController.swift */; };
+		39D40A412189C43100631545 /* SelectCurrencyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D40A402189C43100631545 /* SelectCurrencyTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		39913E6C21889008003CEA6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39913E742188909A003CEA6C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		39913E762188A697003CEA6C /* CoursesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTableViewController.swift; sourceTree = "<group>"; };
+		39D40A402189C43100631545 /* SelectCurrencyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				39913E762188A697003CEA6C /* CoursesTableViewController.swift */,
 				396F391C2188C5AA00470988 /* SettingsTableViewController.swift */,
 				396F391E2188F80200470988 /* ConverterViewController.swift */,
+				39D40A402189C43100631545 /* SelectCurrencyTableViewController.swift */,
 				39913E782188A6FE003CEA6C /* Model */,
 				39913E6421889006003CEA6C /* Main.storyboard */,
 				39913E6721889008003CEA6C /* Assets.xcassets */,
@@ -154,6 +157,7 @@
 			files = (
 				396F391D2188C5AA00470988 /* SettingsTableViewController.swift in Sources */,
 				39913E752188909A003CEA6C /* Model.swift in Sources */,
+				39D40A412189C43100631545 /* SelectCurrencyTableViewController.swift in Sources */,
 				39913E772188A697003CEA6C /* CoursesTableViewController.swift in Sources */,
 				39913E6121889006003CEA6C /* AppDelegate.swift in Sources */,
 				396F391F2188F80200470988 /* ConverterViewController.swift in Sources */,

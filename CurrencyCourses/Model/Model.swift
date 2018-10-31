@@ -161,6 +161,16 @@ class Model: NSObject, XMLParserDelegate {
         print("Данные отображены")
         
         NotificationCenter.default.post(name: NSNotification.Name("dataRefreshed"), object: self) // Отправка уведомления по всему приложению с названием dataRefreshed о том, что данные распарсены и массив currencies заполнен, или, если файла data.xml нет, то просто отображение пустой таблицы.
+        
+        // При изменении даты в Настойках, необходимо менять и св-ва fromCurrency и toCurrency.
+        for currency in currencies {
+            if currency.CharCode == fromCurrency.CharCode {
+                fromCurrency = currency
+            }
+            if currency.CharCode == toCurrency.CharCode {
+                toCurrency = currency
+            }
+        }
     }
     
     var currentCurrency: Currency?
@@ -216,8 +226,6 @@ class Model: NSObject, XMLParserDelegate {
         if elementName == "Valute" {
             currencies.append(currentCurrency!)
         }
-        
-        
     }
 }
 
