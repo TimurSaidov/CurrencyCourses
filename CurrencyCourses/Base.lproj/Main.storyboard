@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Converter-->
+        <!--Конвертер-->
         <scene sceneID="bhv-Ad-8Tw">
             <objects>
                 <viewController id="VOV-Q3-Igg" customClass="ConverterViewController" customModule="CurrencyCourses" customModuleProvider="target" sceneMemberID="viewController">
@@ -35,7 +35,7 @@
                                     <action selector="pushFromAction:" destination="VOV-Q3-Igg" eventType="touchUpInside" id="Dhp-bW-Q0b"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course for the date:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDI-9R-pQX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Курсы на" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDI-9R-pQX">
                                 <rect key="frame" x="16" y="80" width="288" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="288" id="FEi-re-0dK"/>
@@ -118,7 +118,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="U35-Q1-S9W"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Converter" id="NM0-vk-xeu"/>
+                    <navigationItem key="navigationItem" title="Конвертер" id="NM0-vk-xeu"/>
                     <connections>
                         <outlet property="buttonFrom" destination="GYd-f3-AXZ" id="1si-t9-9cQ"/>
                         <outlet property="buttonTo" destination="Ef4-yX-9KH" id="hF2-Im-q4S"/>
@@ -233,7 +233,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Select Date" id="KPv-hE-AGh">
+                            <tableViewSection headerTitle="Выберите дату" id="KPv-hE-AGh">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingCell" textLabel="rFb-49-Arc" detailTextLabel="d3e-k9-fDc" style="IBUITableViewCellStyleValue1" id="lgr-kY-BBa">
                                         <rect key="frame" x="0.0" y="55.5" width="320" height="44"/>
@@ -317,7 +317,7 @@
             </objects>
             <point key="canvasLocation" x="3132" y="-422"/>
         </scene>
-        <!--Select Currency-->
+        <!--Выберите валюту-->
         <scene sceneID="p9L-JJ-aFX">
             <objects>
                 <tableViewController id="beo-8E-bah" customClass="SelectCurrencyTableViewController" customModule="CurrencyCourses" customModuleProvider="target" sceneMemberID="viewController">
@@ -340,7 +340,7 @@
                             <outlet property="delegate" destination="beo-8E-bah" id="J4h-HO-2Mb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Select Currency" id="kxv-97-FAP">
+                    <navigationItem key="navigationItem" title="Выберите валюту" id="kxv-97-FAP">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="A3R-Ts-q6o">
                             <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -395,11 +395,11 @@
             </objects>
             <point key="canvasLocation" x="-623" y="-90"/>
         </scene>
-        <!--Converter-->
+        <!--Конвертер-->
         <scene sceneID="iGG-Q9-Qnm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="92N-WY-rN8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Converter" image="converter" id="eTW-Fb-PQg"/>
+                    <tabBarItem key="tabBarItem" title="Конвертер" image="converter" id="eTW-Fb-PQg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yF0-8r-HEa">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
@@ -419,11 +419,11 @@
             </objects>
             <point key="canvasLocation" x="328.80000000000001" y="241.52923538230885"/>
         </scene>
-        <!--Courses-->
+        <!--Курсы-->
         <scene sceneID="Dnr-Cq-OCs">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jpG-rz-w9w" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Courses" image="courses" id="CcI-JE-MdE"/>
+                    <tabBarItem key="tabBarItem" title="Курсы" image="courses" id="CcI-JE-MdE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C1m-b3-31f">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>

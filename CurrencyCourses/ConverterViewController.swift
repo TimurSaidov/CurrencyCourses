@@ -57,14 +57,18 @@ class ConverterViewController: UIViewController {
         
         refreshButtons()
         
-        dateLabel.text = "Course for the date: \(Model.shared.currentDate)"
+        dateLabel.text = "Курс валют на \(Model.shared.currentDate)"
         
         imageFrom.image = Model.shared.fromCurrency.imageFlag
         imageFrom.layer.cornerRadius = 11
         imageFrom.clipsToBounds = true
+        imageFrom.layer.borderWidth = 1
+        imageFrom.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         imageTo.image = Model.shared.toCurrency.imageFlag
         imageTo.layer.cornerRadius = 11
         imageTo.clipsToBounds = true
+        imageTo.layer.borderWidth = 1
+        imageTo.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
         textFromEditingChanged(textFieldFrom)
     }

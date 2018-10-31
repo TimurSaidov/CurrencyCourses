@@ -149,10 +149,9 @@ class Model: NSObject, XMLParserDelegate {
 //
 //            }
         }
+        task.resume()
         
         NotificationCenter.default.post(name: NSNotification.Name("startLoadingXML"), object: self) // Отправка уведомления по всему приложению с названием startLoadingXML о том, что начинается загрузка данных data типа Data, содержащих xml-объект, и запись этих данных в файл.
-        
-        task.resume()
     }
     
     // Парсинг данных. В файле data.xml по пути pathForXML лежит xml-объект типа xml (в формате xml). Создавая парсер parser, вызываются 3 его метода, благодаря которым xml-объект парсится в массив currencies. А также уведомление приложения о том, что данные обновились.

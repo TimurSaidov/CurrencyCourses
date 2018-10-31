@@ -10,19 +10,21 @@ import UIKit
 
 class CoursesTableViewController: UITableViewController {
     
+    var tableViewShown: Bool = false
+    
     @IBAction func unwindSegue(segue: UIStoryboardSegue) {
         
     }
     
     @IBAction func pushRefreshAction(_ sender: UIBarButtonItem) {
+        tableViewShown = false
+        
         Model.shared.loadXMLFile(desiredDate: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        Model.shared.delegate = self
-        Model.shared.loadXMLFile(desiredDate: nil)
+        print(#function)
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("startLoadingXML"), object: nil, queue: nil) { (notification) in
             print("Уведомление startLoadingXML поймано")
@@ -34,11 +36,12 @@ class CoursesTableViewController: UITableViewController {
                 self.navigationItem.leftBarButtonItem?.customView = activityIndicator
             }
         }
-
+        
         NotificationCenter.default.addObserver(forName: NSNotification.Name("dataRefreshed"), object: nil, queue: nil) { (notification) in
             print("Уведомление dataRefreshed поймано")
             
             DispatchQueue.main.async {
+                self.tableViewShown = true
                 self.tableView.reloadData()
                 self.navigationItem.title = Model.shared.currentDate
                 
@@ -50,7 +53,7 @@ class CoursesTableViewController: UITableViewController {
         
 //        NotificationCenter.default.addObserver(forName: NSNotification.Name("ErrorWhenLoading"), object: nil, queue: nil) { (notification) in
 //            print("Уведомление ErrorWhenLoading поймано")
-//            
+//
 //            DispatchQueue.main.async {
 //                let alertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
 //                let action = UIAlertAction(title: "", style: .default, handler: { (action) in
@@ -58,14 +61,31 @@ class CoursesTableViewController: UITableViewController {
 //                })
 //                alertController.addAction(action)
 //                self.present(alertController, animated: true, completion: nil)
-//                
+//
 //                let barButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(self.pushRefreshAction(_:)))
 //                self.navigationItem.leftBarButtonItem = barButtonItem
 //                self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0, green: 0.5628422499, blue: 0.3188166618, alpha: 1)
 //            }
 //        }
         
+        Model.shared.delegate = self
+        Model.shared.loadXMLFile(desiredDate: nil)
+        
         navigationItem.title = Model.shared.currentDate
+        
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        print("Currencies во время \(#function): \(Model.shared.currencies.count)")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        print("Currencies во время \(#function): \(Model.shared.currencies.count)")
     }
 
     // MARK: - Table view data source
@@ -77,7 +97,13 @@ class CoursesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return Model.shared.currencies.count
+        if tableViewShown {
+            print("Currencies во время \(#function): \(Model.shared.currencies.count)")
+            return Model.shared.currencies.count
+        } else {
+            print("Currencies во время \(#function): 0")
+            return 0
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,11 +112,14 @@ class CoursesTableViewController: UITableViewController {
         let course = Model.shared.currencies[indexPath.row]
         
         cell.currencyNameLabel.text = course.Name
-        cell.currencyCourseLabel.text = course.Value
+        let value = Double(round(100*course.valueDouble!)/100)
+        cell.currencyCourseLabel.text = "\(value)"
         cell.currencyImageView.image = course.imageFlag
         cell.currencyImageView.layer.cornerRadius = 11
         cell.currencyImageView.clipsToBounds = true
-
+        cell.currencyImageView.layer.borderWidth = 1
+        cell.currencyImageView.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        
         return cell
     }
 
@@ -107,11 +136,11 @@ class CoursesTableViewController: UITableViewController {
 
 extension CoursesTableViewController: Alert {
     func apperearanceAlert() {
-        let alertController = UIAlertController(title: "The Internet connection appears to be offline", message: "Try to connect to the Internet. Last loaded data is now displayed", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Connect again", style: .default) { (action) in
+        let alertController = UIAlertController(title: "Нет соединения с Интернетом", message: "Попробуй подключить Интернет, Сейчас будут отображены данные, которые сохранились при Вашем крайнем запуске приложения", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Подключиться снова", style: .default) { (action) in
             Model.shared.loadXMLFile(desiredDate: nil)
         }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancel = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
         alertController.addAction(action)
         alertController.addAction(cancel)
         
@@ -119,8 +148,8 @@ extension CoursesTableViewController: Alert {
     }
     
     func alertInvalidData() {
-        let alertController = UIAlertController(title: "Invalid data XML", message: "", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Connect again", style: .default) { (action) in
+        let alertController = UIAlertController(title: "Неправильные XML-данные", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Подключиться снова", style: .default) { (action) in
             Model.shared.loadXMLFile(desiredDate: nil)
         }
         alertController.addAction(action)
