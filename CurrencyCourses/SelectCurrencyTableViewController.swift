@@ -58,7 +58,8 @@ class SelectCurrencyTableViewController: UITableViewController {
             Model.shared.toCurrency = selectedCurrency
         }
         
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         dismiss(animated: true, completion: nil)
     }
-
 }

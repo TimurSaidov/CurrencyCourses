@@ -49,10 +49,11 @@
 		39D40B1F2189D69B00631545 /* AMD.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D40AFB2189D69B00631545 /* AMD.png */; };
 		39D40B202189D69B00631545 /* CAD.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D40AFC2189D69B00631545 /* CAD.png */; };
 		39D40B212189D69B00631545 /* UZS.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D40AFD2189D69B00631545 /* UZS.png */; };
-		39D40B222189D69B00631545 /* BYR.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D40AFE2189D69B00631545 /* BYR.png */; };
 		39D40B232189D69B00631545 /* LTL.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D40AFF2189D69B00631545 /* LTL.png */; };
 		39D40B242189D69B00631545 /* TRY.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D40B002189D69B00631545 /* TRY.png */; };
 		39D40B252189D69B00631545 /* UAH.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D40B012189D69B00631545 /* UAH.png */; };
+		39D40B47218A09CE00631545 /* HKD.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D40B46218A09CD00631545 /* HKD.png */; };
+		39D40B49218A0AA000631545 /* BYN.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D40B48218A0AA000631545 /* BYN.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,10 +101,11 @@
 		39D40AFB2189D69B00631545 /* AMD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AMD.png; sourceTree = "<group>"; };
 		39D40AFC2189D69B00631545 /* CAD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CAD.png; sourceTree = "<group>"; };
 		39D40AFD2189D69B00631545 /* UZS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UZS.png; sourceTree = "<group>"; };
-		39D40AFE2189D69B00631545 /* BYR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BYR.png; sourceTree = "<group>"; };
 		39D40AFF2189D69B00631545 /* LTL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LTL.png; sourceTree = "<group>"; };
 		39D40B002189D69B00631545 /* TRY.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TRY.png; sourceTree = "<group>"; };
 		39D40B012189D69B00631545 /* UAH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UAH.png; sourceTree = "<group>"; };
+		39D40B46218A09CD00631545 /* HKD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HKD.png; sourceTree = "<group>"; };
+		39D40B48218A0AA000631545 /* BYN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BYN.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,11 +185,13 @@
 				39D40AEF2189D69B00631545 /* USD.png */,
 				39D40AF02189D69B00631545 /* BRL.png */,
 				39D40AF12189D69B00631545 /* TMT.png */,
+				39D40B46218A09CD00631545 /* HKD.png */,
 				39D40AF22189D69B00631545 /* KZT.png */,
 				39D40AF32189D69B00631545 /* PLN.png */,
 				39D40AF42189D69B00631545 /* INR.png */,
 				39D40AF52189D69B00631545 /* CZK.png */,
 				39D40AF62189D69B00631545 /* CNY.png */,
+				39D40B48218A0AA000631545 /* BYN.png */,
 				39D40AF72189D69B00631545 /* AUD.png */,
 				39D40AF82189D69B00631545 /* AZN.png */,
 				39D40AF92189D69B00631545 /* EUR.png */,
@@ -195,7 +199,6 @@
 				39D40AFB2189D69B00631545 /* AMD.png */,
 				39D40AFC2189D69B00631545 /* CAD.png */,
 				39D40AFD2189D69B00631545 /* UZS.png */,
-				39D40AFE2189D69B00631545 /* BYR.png */,
 				39D40AFF2189D69B00631545 /* LTL.png */,
 				39D40B002189D69B00631545 /* TRY.png */,
 				39D40B012189D69B00631545 /* UAH.png */,
@@ -264,7 +267,6 @@
 				39D40B202189D69B00631545 /* CAD.png in Resources */,
 				39D40B042189D69B00631545 /* XDR.jpg in Resources */,
 				39D40B022189D69B00631545 /* LVL.png in Resources */,
-				39D40B222189D69B00631545 /* BYR.png in Resources */,
 				39D40B212189D69B00631545 /* UZS.png in Resources */,
 				39D40B052189D69B00631545 /* KRW.png in Resources */,
 				39D40B1C2189D69B00631545 /* AZN.png in Resources */,
@@ -273,6 +275,7 @@
 				39D40B0E2189D69B00631545 /* GBP.png in Resources */,
 				39D40B1E2189D69B00631545 /* ZAR.png in Resources */,
 				39D40B122189D69B00631545 /* DKK.png in Resources */,
+				39D40B49218A0AA000631545 /* BYN.png in Resources */,
 				39D40B0A2189D69B00631545 /* TJS.png in Resources */,
 				39D40B0B2189D69B00631545 /* SEK.png in Resources */,
 				39D40B192189D69B00631545 /* CZK.png in Resources */,
@@ -286,6 +289,7 @@
 				39D40B1D2189D69B00631545 /* EUR.png in Resources */,
 				39913E6821889008003CEA6C /* Assets.xcassets in Resources */,
 				39D40B062189D69B00631545 /* HUF.png in Resources */,
+				39D40B47218A09CE00631545 /* HKD.png in Resources */,
 				39D40B1F2189D69B00631545 /* AMD.png in Resources */,
 				39D40B082189D69B00631545 /* NOK.png in Resources */,
 				39D40B252189D69B00631545 /* UAH.png in Resources */,
