@@ -1,7 +1,246 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "group:.."
+      name = "..">
+      <FileRef
+         location = "group:CurrencyCourses.xcodeproj">
+      </FileRef>
+      <Group
+         location = "group:CurrencyCourses"
+         name = "CurrencyCourses">
+         <FileRef
+            location = "group:CoursesTableViewController.swift">
+         </FileRef>
+         <FileRef
+            location = "group:ConverterViewController.swift">
+         </FileRef>
+         <FileRef
+            location = "group:SettingsTableViewController.swift">
+         </FileRef>
+         <Group
+            location = "group:Assets.xcassets"
+            name = "Assets.xcassets">
+            <Group
+               location = "group:converter.imageset"
+               name = "converter.imageset">
+               <FileRef
+                  location = "group:converter@2x.png">
+               </FileRef>
+               <FileRef
+                  location = "group:converter.png">
+               </FileRef>
+               <FileRef
+                  location = "group:converter@3x.png">
+               </FileRef>
+               <FileRef
+                  location = "group:Contents.json">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:setting.imageset"
+               name = "setting.imageset">
+               <FileRef
+                  location = "group:setting@2x.png">
+               </FileRef>
+               <FileRef
+                  location = "group:setting@3x.png">
+               </FileRef>
+               <FileRef
+                  location = "group:Contents.json">
+               </FileRef>
+               <FileRef
+                  location = "group:setting.png">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:courses.imageset"
+               name = "courses.imageset">
+               <FileRef
+                  location = "group:courses.png">
+               </FileRef>
+               <FileRef
+                  location = "group:courses@3x.png">
+               </FileRef>
+               <FileRef
+                  location = "group:courses@2x.png">
+               </FileRef>
+               <FileRef
+                  location = "group:Contents.json">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:AppIcon.appiconset"
+               name = "AppIcon.appiconset">
+               <FileRef
+                  location = "group:Contents.json">
+               </FileRef>
+            </Group>
+            <FileRef
+               location = "group:Contents.json">
+            </FileRef>
+            <Group
+               location = "group:switch.imageset"
+               name = "switch.imageset">
+               <FileRef
+                  location = "group:switch@3x.png">
+               </FileRef>
+               <FileRef
+                  location = "group:switch@2x.png">
+               </FileRef>
+               <FileRef
+                  location = "group:switch.png">
+               </FileRef>
+               <FileRef
+                  location = "group:Contents.json">
+               </FileRef>
+            </Group>
+         </Group>
+         <FileRef
+            location = "group:SelectCurrencyTableViewController.swift">
+         </FileRef>
+         <FileRef
+            location = "group:CoursesTableViewCell.swift">
+         </FileRef>
+         <Group
+            location = "group:flagsImages"
+            name = "flagsImages">
+            <FileRef
+               location = "group:LVL.png">
+            </FileRef>
+            <FileRef
+               location = "group:CHF.png">
+            </FileRef>
+            <FileRef
+               location = "group:XDR.jpg">
+            </FileRef>
+            <FileRef
+               location = "group:KRW.png">
+            </FileRef>
+            <FileRef
+               location = "group:HUF.png">
+            </FileRef>
+            <FileRef
+               location = "group:KGS.png">
+            </FileRef>
+            <FileRef
+               location = "group:NOK.png">
+            </FileRef>
+            <FileRef
+               location = "group:MDL.png">
+            </FileRef>
+            <FileRef
+               location = "group:TJS.png">
+            </FileRef>
+            <FileRef
+               location = "group:SEK.png">
+            </FileRef>
+            <FileRef
+               location = "group:RUR.png">
+            </FileRef>
+            <FileRef
+               location = "group:SGD.png">
+            </FileRef>
+            <FileRef
+               location = "group:GBP.png">
+            </FileRef>
+            <FileRef
+               location = "group:BGN.png">
+            </FileRef>
+            <FileRef
+               location = "group:RON.png">
+            </FileRef>
+            <FileRef
+               location = "group:JPY.png">
+            </FileRef>
+            <FileRef
+               location = "group:DKK.png">
+            </FileRef>
+            <FileRef
+               location = "group:USD.png">
+            </FileRef>
+            <FileRef
+               location = "group:BRL.png">
+            </FileRef>
+            <FileRef
+               location = "group:TMT.png">
+            </FileRef>
+            <FileRef
+               location = "group:KZT.png">
+            </FileRef>
+            <FileRef
+               location = "group:PLN.png">
+            </FileRef>
+            <FileRef
+               location = "group:INR.png">
+            </FileRef>
+            <FileRef
+               location = "group:CZK.png">
+            </FileRef>
+            <FileRef
+               location = "group:CNY.png">
+            </FileRef>
+            <FileRef
+               location = "group:AUD.png">
+            </FileRef>
+            <FileRef
+               location = "group:AZN.png">
+            </FileRef>
+            <FileRef
+               location = "group:EUR.png">
+            </FileRef>
+            <FileRef
+               location = "group:ZAR.png">
+            </FileRef>
+            <FileRef
+               location = "group:AMD.png">
+            </FileRef>
+            <FileRef
+               location = "group:CAD.png">
+            </FileRef>
+            <FileRef
+               location = "group:UZS.png">
+            </FileRef>
+            <FileRef
+               location = "group:BYR.png">
+            </FileRef>
+            <FileRef
+               location = "group:LTL.png">
+            </FileRef>
+            <FileRef
+               location = "group:TRY.png">
+            </FileRef>
+            <FileRef
+               location = "group:UAH.png">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Base.lproj"
+            name = "Base.lproj">
+            <FileRef
+               location = "group:LaunchScreen.storyboard">
+            </FileRef>
+            <FileRef
+               location = "group:Main.storyboard">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Model"
+            name = "Model">
+            <FileRef
+               location = "group:Model.swift">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:AppDelegate.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Info.plist">
+         </FileRef>
+      </Group>
+   </Group>
    <FileRef
-      location = "self:CurrencyCourses.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

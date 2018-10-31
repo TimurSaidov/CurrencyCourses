@@ -6,6 +6,7 @@
 //  Copyright © 2018 Timur Saidov. All rights reserved.
 //
 
+import UIKit
 import Foundation
 
 /*
@@ -32,10 +33,17 @@ class Currency {
     var Value: String?
     var valueDouble: Double?
     
+    var imageFlag: UIImage? {
+        if let charCode = CharCode {
+            return UIImage(named: charCode+".png")
+        }
+        return nil
+    }
+    
     class func rouble() -> Currency {
         let rub = Currency()
         
-        rub.CharCode = "RUB"
+        rub.CharCode = "RUR"
         rub.Nominal = "1"
         rub.nominalDouble = 1
         rub.Name = "Российский рубль"

@@ -58,6 +58,14 @@ class ConverterViewController: UIViewController {
         refreshButtons()
         
         dateLabel.text = "Course for the date: \(Model.shared.currentDate)"
+        
+        imageFrom.image = Model.shared.fromCurrency.imageFlag
+        imageFrom.layer.cornerRadius = 11
+        imageFrom.clipsToBounds = true
+        imageTo.image = Model.shared.toCurrency.imageFlag
+        imageTo.layer.cornerRadius = 11
+        imageTo.clipsToBounds = true
+        
         textFromEditingChanged(textFieldFrom)
     }
     
