@@ -140,7 +140,7 @@ class CoursesTableViewController: UITableViewController {
 
 extension CoursesTableViewController: Alert {
     func apperearanceAlert() {
-        let alertController = UIAlertController(title: "Нет соединения с Интернетом", message: "Попробуй подключить Интернет, Сейчас будут отображены данные, которые сохранились при Вашем крайнем запуске приложения", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Нет соединения с Интернетом", message: "Для обновления данных включите передачу данных по сотовой сети или используйте Wi-Fi. Сейчас будут отображены данные, которые сохранились при Вашем крайнем запуске приложения", preferredStyle: .alert)
         let action = UIAlertAction(title: "Подключиться снова", style: .default) { (action) in
             Model.shared.loadXMLFile(desiredDate: nil)
         }

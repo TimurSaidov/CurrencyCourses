@@ -135,7 +135,7 @@ class Model: NSObject, XMLParserDelegate {
                     
                     print("Error when save data: \(error.localizedDescription)")
                 }
-            } else {
+            } else { // Условие, если интернета нет, или данные по API получить нельзя.
                 self.parseXML() // Если интернета нет, то парсятся xml-данные, которые были в файле на тот момент  и вызывается alert controller.
                 
                 self.delegate?.apperearanceAlert() // Вместо делегата можно использовать NotificationCenter.

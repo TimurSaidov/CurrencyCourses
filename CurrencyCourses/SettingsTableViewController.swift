@@ -29,6 +29,9 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let maximumDate = Date().addingTimeInterval(60*60*24)
+        datePicker.maximumDate = maximumDate
 
         doneButtonState()
     }
@@ -57,6 +60,8 @@ class SettingsTableViewController: UITableViewController {
                 isDatePickerShown = true
                 
                 updateDate()
+                
+                doneButtonState()
             }
         default:
             isDatePickerShown = false
